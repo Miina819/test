@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4CAF50"> <!-- PWAのテーマカラー -->
+    <title>名前を表示するアプリ</title>
+    
+    <!-- PWA用のマニフェストファイル -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- アイコン画像 -->
+    <link rel="icon" href="icons/icon-192x192.png" sizes="192x192">
+    <link rel="icon" href="icons/icon-512x512.png" sizes="512x512">
+    
+    <!-- スタイルシート -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>名前を入力してください</h1>
+        <input type="text" id="nameInput" placeholder="名前を入力">
+        <button onclick="displayName()">表示</button>
+        <p id="greetingMessage"></p>
+    </div>
+    
+    <!-- アプリ用スクリプト -->
+    <script src="app.js"></script>
+
+    <!-- PWAのサービスワーカーを登録 -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker Registered', registration);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
 
